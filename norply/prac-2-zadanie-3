@@ -1,0 +1,62 @@
+
+#include <fstream>
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> eratosthene(vector<bool>& v, int n)
+{
+	vector <int> v1(1);
+	v1.reserve(50);
+	int el = -1;
+	int k = 1;
+	for (int i = 2; i < v.size(); i++)
+	{
+		v[i] = 1;
+	}
+
+	for (int i = 1; (i * i) < v.size(); i++)
+	{
+		if (v[i] == 1)
+		{
+			for (int j = (i * i); j < v.size(); j = j + i)
+			{
+				v[j] = 0;
+
+			}
+		}
+	}
+	while (el < n - 1)
+	{
+		if (v[k] == 1)
+		{
+			el++;
+			v1[el] = k;
+			v1.push_back(1);
+		}
+		k++;
+
+	}
+	return v1;
+}
+
+void text(vector<int>& v1)
+{
+	ofstream file("TEXT.txt");
+	for (int i = 0; i < v1.size()-1; i++)
+	{
+		file << endl << v1[i];
+	}
+}
+
+int main()
+
+{
+
+	vector <bool> vec(100);
+	int n;
+	cin >> n;
+	vector<int> v2(n);
+	v2 = eratosthene(vec, n);
+	text(v2);
+}

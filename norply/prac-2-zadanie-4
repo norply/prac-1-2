@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+using namespace std;
+int main()
+{
+    ofstream file("TEXT.txt");
+    vector<int> a;
+    file <<a.capacity();
+  
+    for (int i = 1; i <= 50; i++)
+    {
+        a.push_back(1);
+        file << endl << a.capacity();
+    }
+    file << endl << "size: "<< a.size();
+    a.shrink_to_fit();
+    file <<endl<< a.capacity();
+
+    
+
+}
